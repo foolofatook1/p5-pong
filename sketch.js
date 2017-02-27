@@ -40,7 +40,7 @@ function setup() {
   paddle3_step = 0;
   ball_r = 13;
   x = 0;
-  y = 1;
+  y = 3;
   reset();
 }
 
@@ -61,7 +61,7 @@ function draw() {
     text("Lives:", 350, 25);
     text(y, 475, 25);
     if(y <= 0){
-        y = 1;
+        y = 3;
         x = 0;
     }
   // move paddles on X axis
