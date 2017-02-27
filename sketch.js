@@ -37,6 +37,7 @@ function setup() {
   paddle2_y = 32;
   paddle3_y = height / 2;
   paddle_step = 0;
+  paddle3_step = 0;
   ball_r = 13;
   x = 0;
   y = 1;
@@ -49,11 +50,12 @@ function draw() {
   textFont("monospace");
   fill(2, 224, 50);
 
-    var z = x
+
 
     //score
     text("Score:", 25, 25);
-    text(z, 150, 25);
+    text(x, 150, 25);
+    // how do i make the lives go up when the score reaches 5?
 
     //lives
     text("Lives:", 350, 25);
@@ -62,13 +64,12 @@ function draw() {
         y = 1;
         x = 0;
     }
-
   // move paddles on X axis
   //paddle_x += (mouseX - paddle_x) * .1;
   paddle_x = paddle_x + paddle_step;
 
   //move paddles on Y axis
-  paddle3_y = paddle3_y + paddle_step
+  paddle3_y = paddle3_y + paddle3_step
 
   // hitting paddle1?
   if (ball_y + ball_r > paddle_y) {
@@ -169,12 +170,17 @@ function keyPressed() {
     paddle_step = -3;
   } else if (keyCode == RIGHT_ARROW) {
     paddle_step = 3;
-  } else if (key == ' ') {
+  } else if (keyCode == UP_ARROW){
+    paddle3_step = -3
+  } else if (keyCode == DOWN_ARROW){
+    paddle3_step = 3;
+  }else if (key == ' ') {
     reset();
   }
 }
 
 function keyReleased() {
   paddle_step = 0;
+  paddle3_step = 0;
 }
 
