@@ -15,7 +15,10 @@ var ball_r;
 var ball_x_step, ball_y_step;
 var x;
 var y;
-var z;
+
+function preload() {
+    oldManBall = loadImage("oldManBall.gif");
+}
 
 function setup() {
     createCanvas(600, 632);
@@ -45,12 +48,9 @@ function draw() {
     //score
     text("Score:", 25, 25);
     text(x, 150, 25);
-    if (x = x + 1 && x = x * 5){
-        y = y + 1;
-    }
     // how do i make the lives go up when the score reaches 5?
     //lives
-        text("Lives:", 350, 25);
+    text("Lives:", 350, 25);
     text(y, 475, 25);
     if (y <= 0) {
         y = 3;
@@ -67,6 +67,9 @@ function draw() {
             ball_y_step = -ball_y_step;
             ball_y = paddle_y - ball_r;
             x = x + 1;
+            if (x % 5 == 0) {
+                y = y + 1;
+            }
         }
         else if (ball_y + ball_r > paddle_y) {
             y = y - 1;
@@ -79,6 +82,9 @@ function draw() {
             ball_y_step = random(1, 3);
             ball_y = paddle2_y + paddle_h + ball_r;
             x = x + 1;
+            if (x % 5 == 0) {
+                y = y + 1;
+            }
         }
         else if (ball_y + ball_r < paddle2_y + paddle_h) {
             y = y - 1
@@ -91,6 +97,9 @@ function draw() {
             ball_x_step = 3;
             ball_x = paddle3_x + paddle3_w + ball_r;
             x = x + 1;
+            if (x % 5 == 0) {
+                y = y + 1;
+            }
         }
         else if (ball_x + ball_r < paddle3_x + paddle3_w + ball_r) {
             y = y - 1;
@@ -103,6 +112,9 @@ function draw() {
             ball_x_step = -3;
             ball_x = paddle4_x - ball_r;
             x = x + 1;
+            if (x % 5 == 0) {
+                y = y + 1;
+            }
         }
         else if (ball_x + ball_r > paddle4_x) {
             y = y - 1;
@@ -115,7 +127,7 @@ function draw() {
     //draw ball
     noStroke();
     fill(196, 0, 0);
-    ellipse(ball_x, ball_y, ball_r * 2, ball_r * 2);
+    image(oldManBall, ball_x, ball_y, ball_r * 2, ball_r * 2);
     // draw paddle
     stroke(24);
     fill(64);
